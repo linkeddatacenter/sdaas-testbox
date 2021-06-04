@@ -6,6 +6,8 @@ Swiss Army Knife to test sdaas application in a CD/CD process.
 It build a docker image that contains:
 - a fresh version of sdaas-ce engine
 - git for repository test
+- unzip
+- csvtool
 - helm for chart testing
 - shacl for rdf data compliance
 - yq command line yaml access 
