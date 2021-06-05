@@ -2,7 +2,7 @@
 
 # sdaas-testbox
 
-Swiss Army Knife to test sdaas application in a CD/CD process.
+Swiss Army Knife to test sdaas applications in a CD/CD process.
 It build a docker image that contains:
 - a fresh version of sdaas-ce engine
 - git for repository test
