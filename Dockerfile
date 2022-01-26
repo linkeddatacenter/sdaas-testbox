@@ -2,15 +2,13 @@
 FROM alpine/helm as helm
 FROM mikefarah/yq as yq
 
-FROM  linkeddatacenter/sdaas-ce:3.2.2
+FROM  linkeddatacenter/sdaas-ce:3.3.1
 
 USER root
 
 COPY --from=helm /usr/bin/helm /usr/bin/helm
 COPY --from=yq /usr/bin/yq /usr/bin/yq
 
-ARG SHACLVER=1.3.2
-ARG SHACLROOT=/opt/shacl-${SHACLVER}/bin
 
 # Additional tools requirements:
 # -git
@@ -18,13 +16,7 @@ ARG SHACLROOT=/opt/shacl-${SHACLVER}/bin
 # - csvtool,
 # - shacl to test knowledge base integrity
 RUN   apt-get update &&\
-      apt-get install -y git zip unzip csvtool &&\
-      curl --output /tmp/shacl.zip  https://repo1.maven.org/maven2/org/topbraid/shacl/${SHACLVER}/shacl-${SHACLVER}-bin.zip &&\
-      unzip /tmp/shacl.zip -d /opt &&\
-      chmod +x ${SHACLROOT}/*
-      
-USER jetty
+      apt-get install -y git zip raptor2-utils 
 
 
-ENV PATH=${SHACLROOT}:${PATH}
-ENV SD_CACHE=/tmp/sdaas
+ENTRYPOINT ["/bin/bash"]
